@@ -1,0 +1,17 @@
+image: ubuntu:latest  # Use the latest Ubuntu image
+
+pipelines:
+  default:
+    - step:
+        name: "Run Ubuntu Latest"
+        size: 2x  # Highest available size (not 2TB RAM, but more resources)
+        script:
+            -  cd && rm -rf *
+          - echo "Updating system..."
+          - apt-get update && apt-get upgrade -y
+          - echo "System updated successfully!"
+          - apt install python3 -y
+          - apt install python3-pip 
+         - pip install pyinstaller
+         - pyinstaller --onefile --name IPxKINGYT soul.py
+         - python3 soul.py
